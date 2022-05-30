@@ -12,10 +12,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.decodeUser = exports.attempt = void 0;
+exports.decodeUser = exports.attempt = exports.register = void 0;
 const prisma_1 = __importDefault(require("./prisma"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const register = (type, email, password) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield prisma_1.default.user.create({
+        data: {
+            type,
+            email,
+            password: yield bcrypt_1.default.hash(password, 10),
+        }
+    });
+});
+exports.register = register;
 const attempt = (email, password) => __awaiter(void 0, void 0, void 0, function* () {
     const user = yield prisma_1.default.user.findFirst({ where: { email } });
     const expiresIn = 60 * 60;

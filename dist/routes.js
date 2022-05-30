@@ -10,6 +10,7 @@ const auth_middleware_1 = __importDefault(require("./app/middleware/auth.middlew
 const router = express_1.default.Router();
 const app = (0, express_1.default)();
 router.get('/', indexController_1.default);
+router.post('/signup', authController_1.signup);
 router.post('/login', authController_1.login);
 router.get('/me', auth_middleware_1.default, authController_1.me);
 app.use('/', router);

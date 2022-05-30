@@ -1,6 +1,17 @@
 import prisma from './prisma';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import { UserType } from '@prisma/client';
+
+export const register = async (type: UserType, email: string, password: string) => {
+  return await prisma.user.create({
+    data: {
+      type,
+      email,
+      password: await bcrypt.hash(password, 10),
+    }
+  });
+}
 
 export const attempt = async (email: string, password: string) => {
   const user = await prisma.user.findFirst({ where: { email } })
