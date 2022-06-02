@@ -7,3 +7,4 @@ const index = (request, response) => {
     });
 };
 exports.default = index;
+//# sourceMappingURL=index.controller.js.map

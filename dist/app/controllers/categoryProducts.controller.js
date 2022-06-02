@@ -14,12 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const pagination_1 = require("../lib/pagination");
 const prisma_1 = __importDefault(require("../lib/prisma"));
-class productsController {
+class categoryProductsController {
     list(request, response) {
         return __awaiter(this, void 0, void 0, function* () {
             const { skip, take, pagination } = (0, pagination_1.buildPagination)(request.query);
             return response.json({
                 data: yield prisma_1.default.product.findMany({
+                    where: {
+                        categoryId: Number(request.params.category),
+                    },
                     skip,
                     take,
                 }),
@@ -28,5 +31,5 @@ class productsController {
         });
     }
 }
-exports.default = new productsController;
-//# sourceMappingURL=product.controller.js.map
+exports.default = new categoryProductsController;
+//# sourceMappingURL=categoryProducts.controller.js.map

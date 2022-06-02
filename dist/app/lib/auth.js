@@ -59,3 +59,4 @@ const decodeUser = (token) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.decodeUser = decodeUser;
+//# sourceMappingURL=auth.js.map

@@ -14,3 +14,4 @@ const buildPagination = ({ page = 1, perPage = 10 }) => {
     };
 };
 exports.buildPagination = buildPagination;
+//# sourceMappingURL=pagination.js.map

@@ -14,3 +14,4 @@ app.use(general_1.default);
 app.listen(port, () => {
     console.log(`Server running at https://localhost:${port}`);
 });
+//# sourceMappingURL=index.js.map

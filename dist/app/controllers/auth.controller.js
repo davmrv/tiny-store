@@ -38,3 +38,4 @@ const me = (request, response) => __awaiter(void 0, void 0, void 0, function* ()
     return response.json(request.user);
 });
 exports.me = me;
+//# sourceMappingURL=auth.controller.js.map
