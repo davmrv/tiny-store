@@ -4,6 +4,7 @@ import { signup, login, me } from '../controllers/auth.controller';
 import authMiddleware from '../middleware/auth.middleware';
 import productsController from '../controllers/product.controller';
 import categoryProductsController from '../controllers/categoryProducts.controller';
+import categoriesController from '../controllers/categories.controller';
 
 const router: Router = express.Router();
 const app: Express = express();
@@ -17,7 +18,13 @@ router.get('/me', authMiddleware, me);
 
 // Products
 router.get('/products', productsController.list);
-router.get('/category/:category/products', categoryProductsController.list);
+
+// Category Products
+router.get('/categories/:category/products', categoryProductsController.list);
+
+// Categories
+router.get('/categories', categoriesController.list);
+router.get('/categories/:category', categoriesController.single);
 
 app.use('/', router);
 
