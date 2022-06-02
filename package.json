@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"tsc --watch\" \"nodemon -q dist/index.js\""
+    "dev": "concurrently \"tsc --watch\" \"nodemon --inspect dist/index.js\""
   },
   "repository": {
     "type": "git",
