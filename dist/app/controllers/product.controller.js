@@ -8,17 +8,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const auth_1 = require("../lib/auth");
-const authMiddleware = (request, response, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        request.user = yield (0, auth_1.decodeUser)(request.headers.authorization);
-    }
-    catch (error) {
-        return response.send({
-            message: 'Invalid token',
+const pagination_1 = require("../lib/pagination");
+const prisma_1 = __importDefault(require("../lib/prisma"));
+class productsController {
+    list(request, response) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const { skip, take, pagination } = (0, pagination_1.buildPagination)(request.query);
+            return response.json({
+                data: yield prisma_1.default.product.findMany({
+                    skip,
+                    take,
+                }),
+                pagination,
+            });
         });
     }
-    return next();
-});
-exports.default = authMiddleware;
+}
+exports.default = new productsController;

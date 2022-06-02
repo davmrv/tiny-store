@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import routers from './routes';
+import generalRoutes from './app/routers/general';
 
 dotenv.config();
 
@@ -8,7 +8,7 @@ const app: Express = express();
 const port = process.env.PORT;
 
 app.use(express.json());
-app.use(routers);
+app.use(generalRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at https://localhost:${port}`);
